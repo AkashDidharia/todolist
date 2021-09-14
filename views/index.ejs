@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <!--CREATING THE INFO-->
+
+    <div class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Navbar Brand Logo-->
+        <a href="#" class="navbar-brand">
+            <img src="https://cdn-icons-png.flaticon.com/512/1/1560.png" alt="TDL logo" style="width:40px;">
+        </a>
+
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler bg-secondary" type="button" data-toggle="collapse" data-target="#Navbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="Navbar">
+            <ul class="navbar-nav text-right">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">Completed Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">Our Reviews</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-toggle="modal" data-target="#signUpModal">SignUp</a>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+
+
+
+    <div class="container border-sm border-secondary" id="tasks-accordian">
+        <% let i=0; %>
+        <% tasks.forEach((task)=>{ %>
+        <div class="col-10">
+          <h2 class="text-danger" id="heading<%=i%>">
+            <button class="col-12 m-0" type="button" data-toggle="collapse" href="#collapse<%=i%>">
+              <%=task.taskTitle %> 
+            </button>
+          </h2>
+          <div id="collapse<%=i%>" class="card card-body collapse mb-3" aria-labelledby="heading<%=i%>" >
+            <div class="accordion-body">
+                <%=task.taskDesc%>
+
+            </div>
+          </div>
+        </div>
+        <% i++; %>
+        <%})%>
+    </div>
+
+    <!--CREATING THE TASK-->
+    <div class="container border border-success my-4 p-2">
+        <form>
+        <input id="add-taskTitle" type="text" placeholder="Task" name="taskTitle" />
+        <input id="add-taskDesc" type="text" placeholder="Task Description" name="taskDesc" />
+            <button id="add-button">Add Task</button>
+        </form>
+    </div>
+
+
+
+    <!--UPDATING THE TASK-->
+    <div class="container border border-primary my-4 p-2">
+        <form>
+        <input id="update-taskTitle" type="text" placeholder="Task to change" name="taskTitle" />
+        <input id="update-newtaskTitle" type="text" placeholder="New Task Title" name="newtaskTitle" />
+        <input id="update-newtaskDesc" type="text" placeholder="Task Description" name="newtaskDesc" />
+            <button id="update-button">Update Task</button>
+        </form>
+    </div>
+
+    <!--DELETING THE TASK-->
+    <div class="container border border-danger my-4 p-2">
+        <form>
+        <input id="delete-taskTitle" type="text" placeholder="Task to be deleted" name="taskTitle" />
+            <button id="delete-button">Delete Task</button>
+        </form>
+    </div>    
+
+
+    <script src="/main.js"></script>
+</body>
+
+
+</html>
+
+
+
+<!--
+    
+    <div class="modal fade" id="signUpModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h3 class="modal-title">Create New Account</h3>
+                    <button type="button" class="close" data-dismiss="modal">&Cross;</button>
+                </div>
+                <div class="modal-body">
+                     
+                     
+                    <form action="/newuser" method="POST">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="signupFirstname">First Name</label>
+                                <input type="text" class="form-control" id="signupFirstname" placeholder="First Name" name="firstname" required>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="signupLastname">Last Name</label>
+                                <input type="text" class="form-control" id="signupLastname" placeholder="Last Name" name="lastname">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupUsername">Username:</label>
+                            <input type="text" class="form-control" placeholder="Enter Username" id="signupUsername" name="username" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email address:</label>
+                            <input type="email" class="form-control" placeholder="Enter email" id="signupEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPwd">Password:</label>
+                            <input type="password" class="form-control" placeholder="Enter password" id="signupPwd" name="pwd" required minlength="8">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <button type="submit" class="btn btn-primary col-sm-12">Create Account</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-danger col-sm-12" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container border rounded p-4 mt-4">
+        <form action="/login" method="POST">
+            <div class="form-group row">
+                <label class="col-md-2 col-sm-3 clo-form-label" for="email">Email ID:</label>
+                <div class="col-md-10 col-sm-9">
+                    <input type="email" class="form-control" placeholder="Enter email" id="email" name="email" required>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="col-md-2 col-sm-3 col-form-label" for="pwd">Password:</label>
+                <div class="col-md-10 col-sm-9">
+                    <input type="password" class="form-control" placeholder="Enter password" id="pwd" name="pwd" required minlength="8">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary offset-sm-3 col-sm-3">Login</button>
+        </form>
+    </div>
+
+</body>
+
+</html>
+
+-->
