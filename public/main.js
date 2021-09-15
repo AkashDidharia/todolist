@@ -1,6 +1,7 @@
 const addButton = document.querySelector('#add-button')
 const updateButton = document.querySelector('#update-button')
 const deleteButton = document.querySelector('#delete-button')
+const registerButton = document.querySelector('#register-button')
 
 addButton.addEventListener('click', () => {
     //hit the add end point
@@ -65,3 +66,28 @@ deleteButton.addEventListener("click", () => {
     })
     .catch(error => console.error(error));
 });
+
+
+registerButton.addEventListener('click', () => {
+    //hit the add end point
+    console.log('register event Trriggered');
+    const payload ={
+        method: 'post',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+            first_name : document.querySelector('#signupFirstname').value,
+            last_name : document.querySelector('#signupLastname').value,
+            email : document.querySelector('#signupEmail').value,
+            password : document.querySelector('#signupPwd').value
+        })
+    }
+    fetch('/register',payload)
+    .then(async (res) => { 
+        if(res.ok) {
+            const resobj = await res.json();
+            localStorage.setItem("token", resobj.token);
+        }
+    })
+    .catch(err=>{console.log(err)});
+
+})

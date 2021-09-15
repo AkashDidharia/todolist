@@ -74,8 +74,6 @@
         </form>
     </div>
 
-
-
     <!--UPDATING THE TASK-->
     <div class="container border border-primary my-4 p-2">
         <form>
@@ -93,6 +91,50 @@
             <button id="delete-button">Delete Task</button>
         </form>
     </div>    
+    
+    <div class="modal fade" id="signUpModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h3 class="modal-title">Create New Account</h3>
+                    <button type="button" class="close" data-dismiss="modal">&Cross;</button>
+                </div>
+                <div class="modal-body">
+                     
+                     
+                    <form>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label for="signupFirstname">First Name</label>
+                                <input type="text" class="form-control" id="signupFirstname" placeholder="First Name" name="first_name" required>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="signupLastname">Last Name</label>
+                                <input type="text" class="form-control" id="signupLastname" placeholder="Last Name" name="last_name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupEmail">Email address:</label>
+                            <input type="email" class="form-control" placeholder="Enter email" id="signupEmail" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signupPwd">Password:</label>
+                            <input type="password" class="form-control" placeholder="Enter password" id="signupPwd" name="password" required minlength="8">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <button type="button" class="btn btn-primary col-sm-12" id="register-button">Create Account</button>
+                            </div>
+                            <div class="col-sm-4">
+                                <button type="button" class="btn btn-danger col-sm-12" data-dismiss="modal" >Cancel</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <script src="/main.js"></script>
